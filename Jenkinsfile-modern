@@ -1,10 +1,12 @@
 node ('traccar') {
    stage('Preparation') { // for display purposes
-      git 'https://github.com/traccar/traccar-web.git'
-      sh 'git checkout modern'
+      git branch: "modern", url: 'https://github.com/traccar/traccar-web.git'
+      sh 'pwd'
+      sh 'ls'
    }
    stage('Run') {
       nodejs(nodeJSInstallationName: 'node') {
+         sh 'cd traccar-web'
          sh "npm install"
          sh "npm start"
       }
