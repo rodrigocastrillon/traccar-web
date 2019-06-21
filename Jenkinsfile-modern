@@ -6,7 +6,7 @@ node ('traccar') {
    }
    stage('Run') {
       nodejs(nodeJSInstallationName: 'node') {
-         sh 'cd traccar-web'
+         sh 'cd modern'
          sh "npm install"
          sh "npm start"
       }
