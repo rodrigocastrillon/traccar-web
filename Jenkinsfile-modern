@@ -1,0 +1,10 @@
+node ('traccar') {
+   stage('Preparation') { // for display purposes
+      git 'https://github.com/traccar/traccar-web.git'
+      sh 'git checkout modern'
+   }
+   stage('Run') {
+      sh "npm install"
+      sh "npm start"
+   }
+}
