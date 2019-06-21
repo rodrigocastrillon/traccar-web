@@ -4,7 +4,11 @@ node ('traccar') {
       sh 'git checkout modern'
    }
    stage('Run') {
-      sh "npm install"
-      sh "npm start"
+      steps {
+         nodejs(nodeJSInstallationName: 'node') {
+            sh "npm install"
+            sh "npm start"
+         }
+      }
    }
 }
