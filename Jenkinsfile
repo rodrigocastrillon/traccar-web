@@ -12,8 +12,12 @@ node ('traccar') {
        }
    }
    stage('Backup') {
-       sh 'mkdir -p /opt/traccar-web_backup/`date +"%d-%m-%Y"`'
-       sh 'cp -Rn /opt/traccar/web /opt/traccar-web_backup/`date +"%d-%m-%Y"`'
+       if (fileExists('/opt/traccar/web')) {
+           sh 'mkdir -p /opt/traccar-web_backup/`date +"%d-%m-%Y"`'
+           sh 'cp -Rn /opt/traccar/web /opt/traccar-web_backup/`date +"%d-%m-%Y"`'
+       } else {
+           echo "Traccar not found"
+       }
    }
    stage('Deploy') {
       sh "mkdir -p /opt/traccar/web"
